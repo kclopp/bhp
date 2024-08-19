@@ -35,7 +35,7 @@ class NetCat:
 
         try:
             while True:
-                recv_len =1
+                recv_len = 1
                 response = ''
                 while recv_len:
                     data = self.socket.recv(4096)
@@ -43,11 +43,11 @@ class NetCat:
                     response += data.decode()
                     if recv_len < 4096:
                         break
-                    if response:
-                        print(response)
-                        buffer = input('> ')
-                        buffer += '\n'
-                        self.socket.send(buffer.encode())
+                if response:
+                    print(response)
+                    buffer = input('> ')
+                    buffer += '\n'
+                    self.socket.send(buffer.encode())
         except KeyboardInterrupt:
             print('User terminated.')
             self.socket.close()
