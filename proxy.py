@@ -6,7 +6,7 @@ import threading  # Importing the threading module to handle multiple connection
 HEX_FILTER = ''.join([(len(repr(chr(i))) == 3) and chr(i) or '.' for i in range(256)])
 
 # Function to create a hexdump of the given source data
-def hexdump(src, length=16, sep='.'):
+def hexdump(src, length=16, show=True):
     # If the source is in bytes, decode it to a string
     if isinstance(src, bytes):
         src = src.decode()
@@ -143,7 +143,7 @@ def server_loop(local_host, local_port, remote_host, remote_port, receive_first)
         print("[!!] Check for other listening sockets or correct permissions.")
         sys.exit(0)
 
-    print("[*] Listening on %s:%d:" (local_host, local_port))
+    print("[*] Listening on %s:%d:" % (local_host, local_port))
     server.listen(5)  # Listen for incoming connections
     while True:
         client_socket, addr = server.accept()
